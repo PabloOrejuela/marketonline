@@ -1,0 +1,35 @@
+/*Clases propias*/
+
+#img-logo{
+    height: 35px;
+  }
+  
+  #img-logo{
+    height: 35px;
+  }
+  
+  #wrap {
+      margin: 0 auto 0 auto;
+      width: 30%;
+      min-width: 300px;
+  }
+  
+  #img-button{
+    margin-left: 20px;;
+    width: 30px;
+  }
+  
+  #datatablesSimple{
+    font-size: 0.8em;
+  }
+  
+  #datatablesResumen{
+    font-size: 0.8em;
+  }
+  
+  .bg-market{
+    background-color: #accfd7;
+  }
+  
+  
+  /*END*/
