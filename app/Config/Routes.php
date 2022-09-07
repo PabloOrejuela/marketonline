@@ -39,6 +39,9 @@ $routes->get('/', 'Home::index');
 $routes->post('/validate_credentials', 'Home::validate_credentials');
 $routes->get('/inicio', 'Home::inicio');
 $routes->get('/logout', 'Home::logout');
+
+$routes->get('/frm_registrar_influencer', 'Usuarios::frm_registrar_influencer');
+$routes->post('/registrar_influencer', 'Usuarios::registrar_influencer');
 /*
  * --------------------------------------------------------------------
  * Additional Routing

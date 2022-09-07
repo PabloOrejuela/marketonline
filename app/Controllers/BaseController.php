@@ -10,6 +10,7 @@ use CodeIgniter\HTTP\ResponseInterface;
 use Psr\Log\LoggerInterface;
 
 use App\Models\UsuarioModel;
+use App\Models\CategoriaModel;
 
 /**
  * Class BaseController
@@ -21,8 +22,7 @@ use App\Models\UsuarioModel;
  *
  * For security be sure to declare any new methods as protected or private.
  */
-abstract class BaseController extends Controller
-{
+abstract class BaseController extends Controller {
     /**
      * Instance of the main Request object.
      *
@@ -52,6 +52,7 @@ abstract class BaseController extends Controller
         // Preload any models, libraries, etc, here.
         $this->db = \Config\Database::connect();
         $this->usuarioModel = new UsuarioModel($this->db);
+        $this->categoriaModel = new CategoriaModel($this->db);
         // E.g.: $this->session = \Config\Services::session();
         $this->session = \Config\Services::session();
         $this->request = \Config\Services::request();

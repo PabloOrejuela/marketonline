@@ -82,11 +82,11 @@ class Home extends BaseController{
             }
             
         }else{
-            $this->logout();
+            $this->salir();
         }
     }
 
-    public function logout(){
+    public function salir(){
         //destruyo la session  y salgo
         $idusuario = $this->session->idusuario;
         $user = [

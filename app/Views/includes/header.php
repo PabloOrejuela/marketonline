@@ -58,35 +58,35 @@
                                     </a>
                                     <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
                                         <nav class="sb-sidenav-menu-nested nav">
-                                            <a class="nav-link" href="login.html">Catalogo de influencers</a>
-                                            <a class="nav-link" href="<?= base_url();?>/registrar">Registrarse</a>
-                                            <a class="nav-link" href="<?= base_url();?>/categorias">Categorías</a>
+                                            <a class="nav-link" href="login.html">1</a>
+                                            <a class="nav-link" href="<?= base_url();?>/1">2</a>
+                                            <a class="nav-link" href="<?= base_url();?>/2">3</a>
                                         </nav>
                                     </div>
                                 </nav>
                             </div>
                             <!-- END Menú Item -->
                             <!-- Menu Item small-->
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseInfluencers" aria-expanded="false" aria-controls="pagesCollapseAuth">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-warehouse"></i></div>
                                 Influencers
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+                            <div class="collapse" id="pagesCollapseInfluencers" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="login.html">Catalogo de influencers</a>
-                                    <a class="nav-link" href="<?= base_url();?>/registrar">Registrarse</a>
+                                    <a class="nav-link" href="<?= base_url();?>/frm_registrar_influencer">Registrarse</a>
                                     <a class="nav-link" href="<?= base_url();?>/categorias">Categorías</a>
                                 </nav>
                             </div>
                             <!-- END Menú Item small-->
                             <!-- Menu Item small-->
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseClientes" aria-expanded="false" aria-controls="pagesCollapseAuth">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-warehouse"></i></div>
                                 Clientes
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+                            <div class="collapse" id="pagesCollapseClientes" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="login.html">Catalogo de influencers</a>
                                     <a class="nav-link" href="<?= base_url();?>/registrar">Registrarse</a>
@@ -95,12 +95,12 @@
                             </div>
                             <!-- END Menú Item small-->
                             <!-- Menu Item small-->
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseVendedores" aria-expanded="false" aria-controls="pagesCollapseAuth">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-warehouse"></i></div>    
                                 Vendedores
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+                            <div class="collapse" id="pagesCollapseVendedores" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="login.html">Catalogo de influencers</a>
                                     <a class="nav-link" href="<?= base_url();?>/registrar">Registrarse</a>

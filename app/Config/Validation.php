@@ -53,4 +53,12 @@ class Validation extends BaseConfig{
             'required' => 'El campo "Contraseña" es obligatorio',
         ]
     ];
+
+    public $registro_influencer = [
+        'nombre'  => 'required',
+        'cedula'   => 'required|min_length[10]',
+        'email'   => 'required|valid_email',
+        'telefono'   => 'required|min_length[8]',
+        'pais'   => 'required',
+    ];
 }
