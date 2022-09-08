@@ -5,30 +5,41 @@
                         
             <div class="card mb-4">
                 <div class="card-header">
-                    <i class="fa-solid fa-cash-register"></i>
+                    <i class="fa-regular fa-thumbs-up"></i> 
                 </div>
-                <div class="card-body"> 
-                    <table class="table table-bordered table-striped table-hover mt-5" id="datatablesSimple">
-                        <thead>
-                            <th>Imagen</th>
-                            <th>Nombre</th>
-                            <th>Cédula</th>
-                        </thead>
+                <div class="card-body" style="width: 800px ;"> 
+                    <table class="table table-borderless table-responsive table-hover mt-5" id="datatablesSimple">
+
                     <?php 
                         //echo '<pre>'.var_export($influencers, true).'</pre>';exit;
                         if (isset($influencers) && $influencers !== NULL) {
                             foreach ($influencers as $key => $value) {
                                 
-                                echo '<tr>
-                                        <td><img src="'.site_url() .'public/uploads/avatars/'.$value->idusuario.'/'.$value->image.'" width="100" /></td>
-                                        <td><a href="'.site_url().'editar_influencer/'.$value->idusuario.'">'.$value->nombre.'</a></td>
-                                        <td>'.$value->cedula.'</td>
+                                echo '<tr class="mb-3">
+                                        <td style="width:100px;">
+                                            <div class="card" style="width: 10rem;">
+                                                <img src="'.site_url() .'public/uploads/avatars/'.$value->idusuario.'/'.$value->image.'" card-img-top" />
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="card-body">
+                                            <h3><a href="'.site_url().'editar_influencer/'.$value->idusuario.'">'.$value->nombre.'</a></h3>
+                                                    <ul class="list-group list-group-flush">
+                                                        <li class="list-group-item">'.$value->cedula.'</li>
+                                                        <li class="list-group-item">'.$value->email.'</li>
+                                                        <li class="list-group-item">'.$value->telefono.'</li>
+                                                        <li class="list-group-item"><i class="fa-brands fa-facebook"></i></li>
+                                                        <li class="list-group-item"><i class="fa-brands fa-twitter"></i></li>
+                                                    </ul>
+                                            </div>
+                                        </td>
                                     ';
                                 
                                 echo '</tr>';
+                                echo'<tr><td></td></tr>';
                                 
                             }
-                            echo '<tr><td>Página renderizada en {elapsed_time} segundos</td></tr>';
+                            //echo '<tr><td>Página renderizada en {elapsed_time} segundos</td></tr>';
                         }else{
                             echo   '<td colspan="14">NO HAY DATOS</td>';  
 

@@ -76,7 +76,7 @@
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="<?= base_url();?>/lista_influencers">Catalogo de influencers</a>
                                     <a class="nav-link" href="<?= base_url();?>/frm_registrar_influencer">Registrarse</a>
-                                    <a class="nav-link" href="<?= base_url();?>/categorias">Categorías</a>
+                                    <a class="nav-link" href="<?= base_url();?>/frm_editar_influencer">Editar datos</a>
                                 </nav>
                             </div>
                             <!-- END Menú Item small-->

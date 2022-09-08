@@ -36,7 +36,7 @@ class Home extends BaseController{
                 //echo '<pre>'.var_export($usuario, true).'</pre>';
                 $sessiondata = [
                     'logged_in' => 1,
-                    'idusuarios' => $usuario->idusuario,
+                    'idusuario' => $usuario->idusuario,
                     'nombre' => $usuario->nombre,
                     'idrol' => $usuario->idrol,
                     'nombreRol' => $usuario->nombreRol,
@@ -70,11 +70,11 @@ class Home extends BaseController{
         $data['nombre'] = $this->session->nombre;
         if ($data['logged_in'] == 1) {
             if ($this->session->idempresa) {
-                return redirect()->to('/cartera');
+                return redirect()->to('/');
                 
             }else{
                 
-                //echo '<pre>'.var_export($data['idempresa'], true).'</pre>';
+                //echo '<pre>'.var_export($data['idusuario'], true).'</pre>';exit;
                 $data['version'] = $this->CI_VERSION;
                 $data['title']='Administracion - Mercado';
                 $data['main_content']='home/inicio';
@@ -82,11 +82,11 @@ class Home extends BaseController{
             }
             
         }else{
-            $this->salir();
+            $this->logout();
         }
     }
 
-    public function salir(){
+    public function logout(){
         //destruyo la session  y salgo
         $idusuario = $this->session->idusuario;
         $user = [

@@ -30,6 +30,10 @@
   .bg-market{
     background-color: #accfd7;
   }
+
+  a{
+    text-decoration: none;
+  }
   
   
   /*END*/

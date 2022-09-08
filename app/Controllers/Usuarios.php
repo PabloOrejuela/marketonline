@@ -148,6 +148,34 @@ class Usuarios extends BaseController {
         }
     }
 
+    public function frm_editar_influencer(){
+        $data['idrol'] = $this->session->idrol;
+        $data['idusuario'] = $this->session->idusuario;
+        $data['logged_in'] = $this->session->logged_in;
+        $data['nombre'] = $this->session->nombre;
+        if ($data['logged_in'] == 1) {
+            if ($this->session->idempresa) {
+                return redirect()->to('/home');
+                
+            }else{
+                
+                //echo '<pre>'.var_export($data['idempresa'], true).'</pre>';
+                
+                $data['categorias'] = $this->categoriaModel->findAll();
+                $data['influencer'] = $this->usuarioModel->find($data['idusuario']);
+
+                echo '<pre>'.var_export($this->session->idusuario, true).'</pre>';exit;
+                $data['version'] = $this->CI_VERSION;
+                $data['title']='Administracion - Editar datos del Influencer';
+                $data['main_content']='usuarios/frm_editar_influencer';
+                return view('includes/template', $data);
+            }
+            
+        }else{
+            $this->logout();
+        }
+    }
+
     public function logout(){
         //destruyo la session  y salgo
         $idusuario = $this->session->idusuario;
