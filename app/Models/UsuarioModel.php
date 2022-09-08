@@ -7,14 +7,15 @@ use CodeIgniter\Model;
 class UsuarioModel extends Model{
     protected $DBGroup          = 'default';
     protected $table            = 'usuarios';
-    protected $primaryKey       = 'idusuarios';
+    protected $primaryKey       = 'idusuario';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
     protected $returnType       = 'object';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'nombre', 'cedula', 'password', 'email', 'direccion', 'telefono', 'logged', 'idciudades', 'idrol'
+        'nombre', 'cedula', 'password', 'email', 'direccion', 
+        'descripcion', 'image','telefono', 'logged', 'idciudades', 'idrol'
     ];
 
     // Dates
@@ -59,7 +60,7 @@ class UsuarioModel extends Model{
         $result = NULL;
         $builder = $this->db->table('usuarios');
         $builder->select('*')->where('cedula', $usuario['user'])->where('password', md5($usuario['password']));
-        $builder->join('roles', 'roles.idroles=usuarios.idroles');
+        $builder->join('roles', 'roles.idrol=usuarios.idrol');
         $query = $builder->get();
         if ($query->getResult() != null) {
             foreach ($query->getResult() as $row) {
@@ -68,5 +69,21 @@ class UsuarioModel extends Model{
         }
         //echo $this->db->getLastQuery();
         return $result;
+    }
+
+    function _getUsuarioId($cedula){
+        $idusuario = 0;
+        $builder = $this->db->table('usuarios');
+        $builder->select('idusuario');
+        $builder->where('cedula', $cedula);
+        $query = $builder->get();
+        //echo $this->db->getLastQuery();
+        if ($query->getResult() != null) {
+            foreach ($query->getResult() as $row) {
+                $idusuario = $row->idusuario;
+            }
+            
+        }
+        return $idusuario;
     }
 }

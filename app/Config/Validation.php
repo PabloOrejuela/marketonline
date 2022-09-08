@@ -61,4 +61,25 @@ class Validation extends BaseConfig{
         'telefono'   => 'required|min_length[8]',
         'pais'   => 'required',
     ];
+
+    public $registro_influencer_errors = [
+        'nombre' => [
+            'required' => 'El campo {field} es obligatorio',
+        ],
+        'cedula' => [
+            'required' => 'El campo {field} es obligatorio',
+            'min_length' => 'El campo {field} debe tener al menos 10 digitos',
+        ],
+        'email' => [
+            'required' => 'El campo {field} es obligatorio',
+            'valid_email' => 'El campo {field} debe ser un email válido',
+        ],
+        'telefono' => [
+            'required' => 'El campo {field} es obligatorio',
+            'min_length' => 'El campo {field} debe tener al menos 10 digitos',
+        ],
+        'pais' => [
+            'required' => 'El campo {field} es obligatorio',
+        ]
+    ];
 }

@@ -43,15 +43,17 @@ class Usuarios extends BaseController {
             $data = array(
                 'nombre' => $this->request->getPostGet('nombre'),
                 'cedula' => $this->request->getPostGet('cedula'),
+                'password' => md5($this->request->getPostGet('cedula')),
                 'email' => $this->request->getPostGet('email'),
                 'telefono' => $this->request->getPostGet('telefono'),
                 'pais' => $this->request->getPostGet('pais'),
                 'direccion' => $this->request->getPostGet('direccion'),
                 'descripcion' => $this->request->getPostGet('descripcion'),
-                'image' => $this->request->getFile('image')
+                'image' => $this->request->getFile('image'),
+                'idrol' => $this->request->getPostGet('idrol'),
             );
 
-    echo '<pre>'.var_export($data, true).'</pre>';
+    //echo '<pre>'.var_export($data, true).'</pre>';
             $this->validation->setRuleGroup('registro_influencer');
             
             if (!$this->validation->withRequest($this->request)->run()) {
@@ -61,10 +63,16 @@ class Usuarios extends BaseController {
                 return redirect()->back()->withInput()->with('errors', $this->validation->getErrors());
             }else{ 
                 
+                $idusuario = $this->usuarioModel->_getUsuarioId($data['cedula']);
+                //echo '<pre>'.var_export($idusuario, true).'</pre>';exit;
+                if ($idusuario == 0) {
+                    //INSERT
+                    $this->usuarioModel->save($data);
+                    $idusuario = $this->db->insertID();
 
-                //El Id debe venir de inserción del nuevo usuario
-                $id = 2;
-                //$this->_upload($data['image'], $id);
+                    $this->_upload($data['image'], $idusuario);
+                }
+                return redirect()->to('/lista_influencers');
             }
             
         }else{
@@ -72,7 +80,7 @@ class Usuarios extends BaseController {
         }
     }
 
-    private function _upload($imageFile, $id){
+    private function _upload($imageFile, $idusuario){
         //echo '<pre>'.var_export($imageFile, true).'</pre>';
         if ($imageFile->isValid() && !$imageFile->hasMoved()) {
             //validaciones de la imagen
@@ -86,8 +94,22 @@ class Usuarios extends BaseController {
 
             if ($validated) {
                 $newImageName = $imageFile->getRandomName();
+
+                $data = array(
+                    'image' => $newImageName,
+                );
+
                 //echo '<pre>'.var_export($newImageName, true).'</pre>';
-                $imageFile->move(WRITEPATH.'uploads/avatars/'.$id, $newImageName);
+                $imageFile->move(ROOTPATH.'public/uploads/avatars/'.$idusuario, $newImageName);
+
+                //Hago el resize
+                $path = 'public/uploads/avatars/'.$idusuario.'/'.$newImageName;
+
+                $this->image->withFile($path)
+                            ->resize(800, 400, true, 'height')
+                            ->save($path);
+
+                $this->usuarioModel->update($idusuario, $data);
                 return true;
             }else{
                 
@@ -96,6 +118,33 @@ class Usuarios extends BaseController {
             }
 
             
+        }
+    }
+
+    public function lista_influencers(){
+        $data['idrol'] = $this->session->idrol;
+        $data['idusuario'] = $this->session->idusuario;
+        $data['logged_in'] = $this->session->logged_in;
+        $data['nombre'] = $this->session->nombre;
+        if ($data['logged_in'] == 1) {
+            if ($this->session->idempresa) {
+                return redirect()->to('/home');
+                
+            }else{
+                
+                //echo '<pre>'.var_export($data['idempresa'], true).'</pre>';
+                $data['rol'] = 2; //Rol de influencer
+                $data['influencers'] = $this->usuarioModel->where('idrol', 2)->findAll();
+                
+                //echo '<pre>'.var_export($data['influencers'][0]->image, true).'</pre>';exit;
+                $data['version'] = $this->CI_VERSION;
+                $data['title']='Influencers';
+                $data['main_content']='usuarios/lista_influencers';
+                return view('includes/template', $data);
+            }
+            
+        }else{
+            $this->logout();
         }
     }
 

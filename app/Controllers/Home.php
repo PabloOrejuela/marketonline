@@ -30,15 +30,15 @@ class Home extends BaseController{
         }else{ 
 
             $usuario = $this->usuarioModel->_getUsuario($data);
-            echo '<pre>'.var_export($usuario, true).'</pre>';
+            //echo '<pre>'.var_export($usuario, true).'</pre>';
             if (isset($usuario) && $usuario != NULL) {
                 //valido el login y pongo el id en sesion
                 //echo '<pre>'.var_export($usuario, true).'</pre>';
                 $sessiondata = [
                     'logged_in' => 1,
-                    'idusuarios' => $usuario->idusuarios,
+                    'idusuarios' => $usuario->idusuario,
                     'nombre' => $usuario->nombre,
-                    'idroles' => $usuario->idroles,
+                    'idrol' => $usuario->idrol,
                     'nombreRol' => $usuario->nombreRol,
                     'administracion' => $usuario->administracion,
                     'influencer' => $usuario->influencer,
@@ -50,7 +50,7 @@ class Home extends BaseController{
                     'logged' => 1
                 ];
                 
-                $this->usuarioModel->update($usuario->idusuarios, $user);
+                $this->usuarioModel->update($usuario->idusuario, $user);
                 $this->session->set($sessiondata);
 
                 return redirect()->to('inicio');
