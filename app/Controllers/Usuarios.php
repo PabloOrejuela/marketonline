@@ -164,11 +164,68 @@ class Usuarios extends BaseController {
                 $data['categorias'] = $this->categoriaModel->findAll();
                 $data['influencer'] = $this->usuarioModel->find($data['idusuario']);
 
-                echo '<pre>'.var_export($this->session->idusuario, true).'</pre>';exit;
+                //echo '<pre>'.var_export($data['influencer'], true).'</pre>';exit;
                 $data['version'] = $this->CI_VERSION;
                 $data['title']='Administracion - Editar datos del Influencer';
                 $data['main_content']='usuarios/frm_editar_influencer';
                 return view('includes/template', $data);
+            }
+            
+        }else{
+            $this->logout();
+        }
+    }
+
+    public function frm_lista_influencers(){
+        $data['idrol'] = $this->session->idrol;
+        $data['idusuario'] = $this->session->idusuario;
+        $data['logged_in'] = $this->session->logged_in;
+        $data['nombre'] = $this->session->nombre;
+        if ($data['logged_in'] == 1) {
+            if ($this->session->idempresa) {
+                return redirect()->to('/home');
+                
+            }else{
+                
+                //echo '<pre>'.var_export($data['idempresa'], true).'</pre>';
+                $data['influencers'] = $this->usuarioModel->where('idrol', 2)->findAll();
+                
+                //echo '<pre>'.var_export($data['influencers'][0]->image, true).'</pre>';exit;
+                $data['version'] = $this->CI_VERSION;
+                $data['title']='Influencers';
+                $data['main_content']='usuarios/frm_lista_influencers';
+                return view('includes/template', $data);
+            }
+            
+        }else{
+            $this->logout();
+        }
+    }
+
+    public function usuario_cambiar_estado($idusuario, $status){
+        $data['idrol'] = $this->session->idrol;
+        $data['idusuario'] = $this->session->idusuario;
+        $data['logged_in'] = $this->session->logged_in;
+        $data['nombre'] = $this->session->nombre;
+        if ($data['logged_in'] == 1) {
+            if ($this->session->idempresa) {
+                return redirect()->to('/home');
+                
+            }else{
+                
+                //echo '<pre>'.var_export($idusuario, true).'</pre>';exit;
+                if ($status == 0) {
+                    $data = array(
+                        'status' => '1'
+                    );
+                }else{
+                    $data = array(
+                        'status' => '0'
+                    );
+                }
+                
+                $this->usuarioModel->update($idusuario, $data);
+                return redirect()->to('/frm_lista_influencers');
             }
             
         }else{

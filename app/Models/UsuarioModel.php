@@ -15,7 +15,8 @@ class UsuarioModel extends Model{
     protected $protectFields    = true;
     protected $allowedFields    = [
         'nombre', 'cedula', 'password', 'email', 'direccion', 
-        'descripcion', 'image','telefono', 'logged', 'idciudades', 'idrol'
+        'descripcion', 'image','telefono', 'logged', 'idciudades', 'idrol',
+        'pais', 'ciudad','status'
     ];
 
     // Dates

@@ -40,11 +40,12 @@ $routes->post('/validate_credentials', 'Home::validate_credentials');
 $routes->get('/inicio', 'Home::inicio');
 $routes->get('/logout', 'Home::logout');
 
-
 $routes->get('/lista_influencers', 'Usuarios::lista_influencers');
+$routes->get('/frm_lista_influencers', 'Usuarios::frm_lista_influencers');
 $routes->get('/frm_registrar_influencer', 'Usuarios::frm_registrar_influencer');
 $routes->post('/registrar_influencer', 'Usuarios::registrar_influencer');
 $routes->get('/frm_editar_influencer', 'Usuarios::frm_editar_influencer');
+$routes->get('/usuario_cambiar_estado/(:any)', 'Usuarios::usuario_cambiar_estado/$1/$2');
 /*
  * --------------------------------------------------------------------
  * Additional Routing
